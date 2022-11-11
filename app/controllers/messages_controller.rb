@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
+  before_action :set_room
 
   # GET /messages or /messages.json
   def index
@@ -59,6 +60,10 @@ class MessagesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_room
+      @room = Room.find(params[:room_id])
+    end
+
     def set_message
       @message = Message.find(params[:id])
     end
